@@ -5,12 +5,13 @@ public class ArrayList implements List {
 	private Object[] array;
 	
 	public ArrayList(){
-		array[0] = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+		array = new Object[1];
+		array[0] = ErrorMessage.EMPTY_STRUCTURE;
 	}
 	
 	@Override
 	public boolean isEmpty() {
-		return (get(0).getError() == ErrorMessage.EMPTY_STRUCTURE)? true : false;
+		return (array[0] == ErrorMessage.EMPTY_STRUCTURE)? true : false;
 	}
 
 	@Override
@@ -22,6 +23,8 @@ public class ArrayList implements List {
 	public ReturnObject get(int index) {
 		if (index < 0 | index >= size()){
 			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}else if (isEmpty() == true){
+			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 		}else{
 			return new ReturnObjectImpl(array[index]);
 		}
@@ -35,8 +38,17 @@ public class ArrayList implements List {
 			return get(0);
 		}else{
 			ReturnObject result = new ReturnObjectImpl(array[index]);
-			for (int i = index; i < size(); i++){
-				array[i] = array[i+1];
+			if (size() == 1){
+				array[0] = ErrorMessage.EMPTY_STRUCTURE;
+			}else{
+				for (int i = index; i < size() - 1; i++){
+					array[i] = array[i+1];
+				}
+				Object[] smallerArray = new Object[size()-1];
+				for (int i = 0; i < smallerArray.length; i++){
+					smallerArray[i] = array[i];
+				}
+				array = smallerArray;
 			}
 			return result;
 		}
@@ -44,14 +56,41 @@ public class ArrayList implements List {
 
 	@Override
 	public ReturnObject add(int index, Object item) {
-		// TODO Auto-generated method stub
-		return null;
+		if (index < 0 | index >= size()){
+			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}else if(item == null){
+			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+		}else if (isEmpty() == true){
+			array[index] =  new ReturnObjectImpl(item);
+		}else{
+			increaseArray();
+			for (int i = size() - 1; i > index; i--){
+				array[i] = array[i-1];
+			}
+			array[index] = item;
+		}
+		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 	}
 
 	@Override
 	public ReturnObject add(Object item) {
-		// TODO Auto-generated method stub
-		return null;
+		if (item == null){
+			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+		}else if(isEmpty() == true){
+			array[0] = item;
+		}else{
+			increaseArray();
+			array[size()-1] = item;
+		}
+		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
+	}
+	
+	public Object[] increaseArray(){
+		Object[] biggerArray = new Object[size()+1];
+		for (int i = 0; i < size(); i++){
+			biggerArray[i] = array[i];
+		}
+		return array = biggerArray;
 	}
 
 }
