@@ -8,6 +8,7 @@ public class ArrayListTest {
 		int a = one.size();
 		String b = (one.isEmpty() == true)? "empty" : "not empty";
 		one.add("cat");
+		//System.out.println(one.get(0).getReturnValue());
 		Object c = (one.get(0).getReturnValue());
 		int d = one.size();
 		one.add("dog");
@@ -21,7 +22,18 @@ public class ArrayListTest {
 		int j = (one.size());
 		Object k = (one.get(0).getReturnValue());
 		Object l = (one.get(1).getReturnValue());
-		System.out.println((a == 1)? "1 pass" : "1 fail");
+		one.add(1);
+		one.add(2);
+		one.add(3);
+		one.add(4);
+		one.add(5);
+		one.add(6);
+		one.add(7);
+		one.add(8);
+		one.add(9);
+		one.add("cheese");
+		Object m = (one.get(11).getReturnValue());
+		System.out.println((a == 0)? "1 pass" : "1 fail");
 		System.out.println((b == "empty")? "2 pass" : "2 fail");
 		System.out.println((c == "cat")? "3 pass" : "3 fail");
 		System.out.println((d == 1)? "4 pass" : "4 fail");
@@ -33,6 +45,8 @@ public class ArrayListTest {
 		System.out.println((j == 2)? "10 pass" : "10 fail");
 		System.out.println((k == "mouse")? "11 pass" : "11 fail");
 		System.out.println((l == "dog")? "12 pass" : "12 fail");
+		System.out.println((m == "cheese")? "13 pass" : "13 fail");
+		System.out.println(one.add(24,"horse").getError());
 	}
 
 }

@@ -3,20 +3,21 @@ package cw3;
 public class ArrayList implements List {
 
 	private Object[] array;
+	private int listSize;
 	
 	public ArrayList(){
-		array = new Object[1];
-		array[0] = ErrorMessage.EMPTY_STRUCTURE;
+		array = new Object[10];
+		listSize = 0;
 	}
 	
 	@Override
 	public boolean isEmpty() {
-		return (array[0] == ErrorMessage.EMPTY_STRUCTURE)? true : false;
+		return (listSize == 0)? true : false;
 	}
 
 	@Override
 	public int size() {
-		return this.array.length;
+		return listSize;
 	}
 
 	@Override
@@ -35,35 +36,28 @@ public class ArrayList implements List {
 		if (index < 0 | index >= size()){
 			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}else if (isEmpty() == true){
-			return get(0);
+			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 		}else{
 			ReturnObject result = new ReturnObjectImpl(array[index]);
-			if (size() == 1){
-				array[0] = ErrorMessage.EMPTY_STRUCTURE;
-			}else{
-				for (int i = index; i < size() - 1; i++){
-					array[i] = array[i+1];
-				}
-				Object[] smallerArray = new Object[size()-1];
-				for (int i = 0; i < smallerArray.length; i++){
-					smallerArray[i] = array[i];
-				}
-				array = smallerArray;
+			for (int i = index; i < size() - 1; i++){
+				array[i] = array[i+1];
 			}
+			listSize--;	
 			return result;
 		}
 	}
 
 	@Override
-	public ReturnObject add(int index, Object item) {
+	public ReturnObject add(int index, Object item){
+		if(listSize == 10){
+			array = increaseArray(array);
+		}
 		if (index < 0 | index >= size()){
 			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}else if(item == null){
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
-		}else if (isEmpty() == true){
-			array[index] =  new ReturnObjectImpl(item);
 		}else{
-			increaseArray();
+			listSize++;
 			for (int i = size() - 1; i > index; i--){
 				array[i] = array[i-1];
 			}
@@ -74,23 +68,24 @@ public class ArrayList implements List {
 
 	@Override
 	public ReturnObject add(Object item) {
+		if(listSize == 10){
+			array = increaseArray(array);
+		}
 		if (item == null){
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
-		}else if(isEmpty() == true){
-			array[0] = item;
 		}else{
-			increaseArray();
+			listSize++;
 			array[size()-1] = item;
 		}
 		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 	}
 	
-	public Object[] increaseArray(){
-		Object[] biggerArray = new Object[size()+1];
+	public Object[] increaseArray(Object[] list){
+		Object[] biggerArray = new Object[list.length * 2];
 		for (int i = 0; i < size(); i++){
-			biggerArray[i] = array[i];
+			biggerArray[i] = list [i];
 		}
-		return array = biggerArray;
+		return biggerArray;
 	}
 
 }
