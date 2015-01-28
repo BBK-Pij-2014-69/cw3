@@ -2,7 +2,6 @@ package cw3;
 
 public class FunctionalArrayList extends ArrayList implements FunctionalList {
 
-	
 	@Override
 	public ReturnObject head() {
 		if (isEmpty() == true){
