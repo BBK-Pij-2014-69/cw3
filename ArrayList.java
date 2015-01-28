@@ -77,7 +77,7 @@ public class ArrayList implements List {
 			listSize++;
 			array[size()-1] = item;
 		}
-		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
+		return new ReturnObjectImpl(item);
 	}
 	
 	public Object[] increaseArray(Object[] list){
