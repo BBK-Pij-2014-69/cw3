@@ -24,6 +24,10 @@ public class Node {
     }
 
     public void setNext(Node nextNode) {
-	  this.next = nextNode;
+	  next = nextNode;
+    }
+    
+    public void setIndex(int input){
+    	index = input;
     }
 }
