@@ -23,7 +23,7 @@ public class ReturnObjectImpl implements ReturnObject {
 	}
 
 	public Object getReturnValue(){
-		return (hasError() == false)? resultObject : null;
+		return (hasError() == true)? null : resultObject;
 	}
 	
 }
