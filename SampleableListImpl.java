@@ -42,7 +42,7 @@ public class SampleableListImpl implements SampleableList {
 	public SampleableList sample() {
 		SampleableList newList = new SampleableListImpl(aList);
 		for (int i = 0; i < newList.size(); i++){
-			if (i % 2 == 0){
+			if (i % 2 == 1){
 				newList.remove(i);
 			}
 		}
