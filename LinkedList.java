@@ -70,7 +70,7 @@ public class LinkedList implements List {
 			listLength++;
 			updateIndeces();
 		}
-		return new ReturnObjectImpl(newItem);
+		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class LinkedList implements List {
 		}
 		search.setNext(newItem);
 		listLength++;
-		return new ReturnObjectImpl(newItem);
+		return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 	}
 	
 	public void updateIndeces(){
