@@ -1,52 +1,46 @@
 package cw3;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+
 public class ArrayListTest {
 
-	public static void main(String[] args) {
-		ArrayList one = new ArrayList();
-		//System.out.println(one.size());
-		int a = one.size();
-		String b = (one.isEmpty() == true)? "empty" : "not empty";
-		one.add("cat");
-		//System.out.println(one.get(0).getReturnValue());
-		Object c = (one.get(0).getReturnValue());
-		int d = one.size();
-		one.add("dog");
-		int e = (one.size());
-		Object f = (one.get(0).getReturnValue());
-		Object g = (one.get(1).getReturnValue());
-		one.remove(0);
-		int h = (one.size());
-		Object i = (one.get(0).getReturnValue());
-		one.add(0,"mouse");
-		int j = (one.size());
-		Object k = (one.get(0).getReturnValue());
-		Object l = (one.get(1).getReturnValue());
-		one.add(1);
-		one.add(2);
-		one.add(3);
-		one.add(4);
-		one.add(5);
-		one.add(6);
-		one.add(7);
-		one.add(8);
-		one.add(9);
-		one.add("cheese");
-		Object m = (one.get(11).getReturnValue());
-		System.out.println((a == 0)? "1 pass" : "1 fail");
-		System.out.println((b == "empty")? "2 pass" : "2 fail");
-		System.out.println((c == "cat")? "3 pass" : "3 fail");
-		System.out.println((d == 1)? "4 pass" : "4 fail");
-		System.out.println((e == 2)? "5 pass" : "5 fail");
-		System.out.println((f == "cat")? "6 pass" : "6 fail");
-		System.out.println((g == "dog")? "7 pass" : "7 fail");
-		System.out.println((h == 1)? "8 pass" : "8 fail");
-		System.out.println((i == "dog")? "9 pass" : "9 fail");
-		System.out.println((j == 2)? "10 pass" : "10 fail");
-		System.out.println((k == "mouse")? "11 pass" : "11 fail");
-		System.out.println((l == "dog")? "12 pass" : "12 fail");
-		System.out.println((m == "cheese")? "13 pass" : "13 fail");
-		System.out.println(one.add(24,"horse").getError());
-	}
+	ArrayList one = new ArrayList();
+	
+		
+		@Test
+		public final void test(){
+			assertEquals(one.size(), 0);
+			assertTrue(one.isEmpty());;
+			one.add("cat");
+			assertEquals(one.get(0).getReturnValue(), "cat");
+			assertEquals(one.size(), 1);
+			one.add("dog");
+			assertEquals(one.size(), 2);
+			assertEquals(one.get(0).getReturnValue(), "cat");
+			assertEquals(one.get(1).getReturnValue(), "dog");
+			one.remove(0);
+			assertEquals(one.size(), 1);
+			assertEquals(one.get(0).getReturnValue(), "dog");
+			one.add(0,"mouse");
+			assertEquals(one.size(), 2);
+			assertEquals(one.get(0).getReturnValue(), "mouse");
+			assertEquals(one.get(1).getReturnValue(), "dog");
+			one.add(1);
+			one.add(2);
+			one.add(3);
+			one.add(4);
+			one.add(5);
+			one.add(6);
+			one.add(7);
+			one.add(8);
+			one.add(9);
+			one.add("cheese");
+			assertEquals(one.get(11).getReturnValue(), "cheese");
+			ReturnObject checkError = one.add(24,"horse");
+			assertEquals(checkError.getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}
 
 }
