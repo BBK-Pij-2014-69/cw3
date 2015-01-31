@@ -2,51 +2,51 @@ package cw3;
 
 public class SampleableListImpl implements SampleableList {
 
-	private List aList;
+	private List anyList;
 	
 	public SampleableListImpl(List list){
-		 aList = list;
+		anyList = list;
 	}
-	
+		
 	@Override
 	public boolean isEmpty() {
-		return aList.isEmpty();
+		return anyList.isEmpty();
 	}
 
 	@Override
 	public int size() {
-		return aList.size();
+		return anyList.size();
 	}
 
 	@Override
 	public ReturnObject get(int index) {
-		return aList.get(index);
+		return anyList.get(index);
 	}
 
 	@Override
 	public ReturnObject remove(int index) {
-		return aList.remove(index);
+		return anyList.remove(index);
 	}
 
 	@Override
 	public ReturnObject add(int index, Object item) {
-		return aList.add(index, item);
+		return anyList.add(index, item);
 	}
 
 	@Override
 	public ReturnObject add(Object item) {
-		return aList.add(item);
+		return anyList.add(item);
 	}
 
 	@Override
 	public SampleableList sample() {
-		SampleableList newList = new SampleableListImpl(aList);
-		for (int i = 0; i < newList.size(); i++){
-			if (i % 2 == 1){
-				newList.remove(i);
+		List newList = new LinkedList();
+		for (int i = 0; i < anyList.size(); i++){
+			if (i % 2 == 0){
+				newList.add(anyList.get(i).getReturnValue());
 			}
 		}
-		return newList;
+		return new SampleableListImpl(newList);
 	}
 
 }
