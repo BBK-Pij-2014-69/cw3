@@ -1,7 +1,14 @@
 package cw3;
 
+/**
+ * @see FunctionalList
+ * @author Kieren Millar
+ */
 public class FunctionalArrayList extends ArrayList implements FunctionalList {
 
+	/** 
+	 * {@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject head() {
 		if (isEmpty() == true){
@@ -11,10 +18,13 @@ public class FunctionalArrayList extends ArrayList implements FunctionalList {
 		}
 	}
 
+	/** 
+	 * {@inheritDoc} 
+	 */
 	@Override
 	public FunctionalList rest() {
 		FunctionalList result = new FunctionalArrayList();
-		for (int i = 0; i < size(); i++) {
+		for (int i = 1; i < size(); i++) {
 			result.add(get(i).getReturnValue());
 		}
 		return result;
