@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/**
+ * 
+ * @author Kieren Millar
+ *
+ */
 public class StackImplTest {
 
 	ArrayList sampleList = new ArrayList();

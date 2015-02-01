@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/**
+ * 
+ * @author Kieren Millar
+ *
+ */
 public class LinkedListTest {
 
 	LinkedList one = new LinkedList();

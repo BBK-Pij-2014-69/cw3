@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/**
+ * 
+ * @author Kieren Millar
+ *
+ */
 public class ArrayListTest {
 
 	ArrayList one = new ArrayList();

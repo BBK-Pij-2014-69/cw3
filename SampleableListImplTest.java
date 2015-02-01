@@ -1,5 +1,10 @@
 package cw3;
 
+/**
+ * 
+ * @author Kieren Millar
+ *
+ */
 public class SampleableListImplTest {
 
 	public static void main(String[] args) {
