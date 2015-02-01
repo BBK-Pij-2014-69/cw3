@@ -13,8 +13,10 @@ public class ArrayListTest {
 		@Test
 		public final void test(){
 			assertEquals(one.size(), 0);
-			assertTrue(one.isEmpty());;
-			one.add("cat");
+			assertTrue(one.isEmpty());
+			assertEquals(one.add(null).getError(),ErrorMessage.INVALID_ARGUMENT);
+			assertEquals(one.add("cat").getError(), ErrorMessage.NO_ERROR);
+			assertEquals(one.add(0, null).getError(), ErrorMessage.INVALID_ARGUMENT);
 			assertEquals(one.get(0).getReturnValue(), "cat");
 			assertEquals(one.size(), 1);
 			one.add("dog");
@@ -24,7 +26,7 @@ public class ArrayListTest {
 			one.remove(0);
 			assertEquals(one.size(), 1);
 			assertEquals(one.get(0).getReturnValue(), "dog");
-			one.add(0,"mouse");
+			assertEquals(one.add(0,"mouse").getError(), ErrorMessage.NO_ERROR);
 			assertEquals(one.size(), 2);
 			assertEquals(one.get(0).getReturnValue(), "mouse");
 			assertEquals(one.get(1).getReturnValue(), "dog");
@@ -39,8 +41,10 @@ public class ArrayListTest {
 			one.add(9);
 			one.add("cheese");
 			assertEquals(one.get(11).getReturnValue(), "cheese");
-			ReturnObject checkError = one.add(24,"horse");
-			assertEquals(checkError.getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			assertEquals(one.add(24,"horse").getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			assertEquals(one.remove(27).getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS );
+			assertEquals(one.remove(11).getReturnValue(), "cheese");
+			assertEquals(one.get(27).getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}
 
 }
