@@ -1,5 +1,10 @@
 package cw3;
 
+/**
+ * A Node class with getters and setters,
+ * to be used with LinkedList.
+ * @author Kieren Millar
+ */
 public class Node {
 	private int index; 
     private Node next;
