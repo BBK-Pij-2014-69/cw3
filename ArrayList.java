@@ -103,7 +103,7 @@ public class ArrayList implements List {
 	 * Method for increasing the size of the array.
 	 * @return larger array with values cloned.
 	 */
-	public Object[] increaseArray(Object[] list){
+	private Object[] increaseArray(Object[] list){
 		Object[] biggerArray = new Object[list.length * 2];
 		for (int i = 0; i < size(); i++){
 			biggerArray[i] = list [i];
@@ -116,7 +116,7 @@ public class ArrayList implements List {
 	 * @return a ReturnObject, null if the operation is successful
 	 *         or containing an appropriate error message.
 	 */
-	public ReturnObject checkErrors(int index, Object item){
+	private ReturnObject checkErrors(int index, Object item){
 		if (index < 0 | index >= size()){
 			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}else if(item == null){
