@@ -15,6 +15,13 @@ public class SampleableListImpl implements SampleableList {
 		anyList = list;
 	}
 	
+	/**
+	 * A constructor if no list is provided.
+	 */
+	public SampleableListImpl() {
+		anyList = new ArrayList();
+	}
+	
 	/** 
 	 * {@inheritDoc}
 	 */
